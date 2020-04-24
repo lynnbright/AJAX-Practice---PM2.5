@@ -9,12 +9,8 @@ $(document).ready(()=>{
         // resp.data.filter(x => x.Concentration !== 'x')
         let filteredData = R.reject(x => x.Concentration === 'x', resp.data)
         let siteByConcentrations = R.groupBy(x => x.Concentration, filteredData) // {2: [], 3: []}
-        let arySiteByConctr = Object.entries(siteByConcentrations)
-        let sortedSites = R.take(3, 
-                                 R.reverse(
-                                   R.sort(function([c, ary]) { return c}, arySiteByConctr)
-                                 )
-                                ) 
+        let arySiteByConctr = Object.entries(siteByConcentrations) //[ ["2",[]], ["3",[]] ...]
+        let sortedSites = R.take( 3, R.reverse(arySiteByConctr))                 
         let body = gotPairs(sortedSites) 
         let shows = body.forEach(function(item,index){
           $('.container').append(`<div style="inline-block"> <h2> 今日 PM 2.5 濃度指數 Top ${index + 1} ：${item} </h2></div>`)
