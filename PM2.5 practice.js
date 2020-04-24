@@ -1,4 +1,3 @@
-
 $(document).ready(()=>{
   
   let url = 'https://opendata.epa.gov.tw/api/v1/ATM00766?%24skip=0&%24top=1000&%24format=json'
